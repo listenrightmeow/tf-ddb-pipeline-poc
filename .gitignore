@@ -1,5 +1,7 @@
 # ENVIRONMENT VARIABLES
 /secrets/*/**
+!/secrets/backend/*.tfvars.example
+!/secrets/environments/*.tfvars.example
 
 # TERRAFORM CONFIGURATION
 /terraform/.terraform

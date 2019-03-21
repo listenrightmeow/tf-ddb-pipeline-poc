@@ -17,6 +17,16 @@ handle_apply() {
   done
 }
 
+handle_workspace() {
+  terraform workspace list | grep $ENV
+
+  if [ $? -eq 0 ]; then
+    terraform workspace select $ENV
+  else
+    terraform workspace new $ENV
+  fi
+}
+
 handler() {
   cd $CURRENT_DIR/terraform
   cp ./environments/$ENV/main.tf .
@@ -24,10 +34,10 @@ handler() {
   terraform init \
     -backend-config=$CURRENT_DIR/secrets/backend/$ENV.tfvars \
     -var-file=$CURRENT_DIR/secrets/environments/$ENV.tfvars
-  terraform workspace select $ENV
 
+  handle_workspace
   handle_apply
-
+  #
   terraform output -json > $CURRENT_DIR/terraform/output/$ENV.json
 
   cleanup
