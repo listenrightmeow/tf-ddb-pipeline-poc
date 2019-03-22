@@ -23,7 +23,7 @@ exports.handler = (event, context) => {
           const topic = sns.publish(params).promise();
           topic.then(data => {
             resolve(data);
-          }).catch(error);
+          }).catch(reject);
         } else {
           // NOTE: By default λ has a 30 second execution limit, this record
           // is not the first of the payload, re-call the λ function recursively

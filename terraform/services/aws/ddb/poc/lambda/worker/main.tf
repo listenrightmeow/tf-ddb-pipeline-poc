@@ -3,6 +3,7 @@ variable "namespace" {}
 variable "role_arn" {}
 variable "security_group_ids" {}
 variable "subnets" {}
+variable "topic_arn" {}
 
 variable "path" {
   type = "string"
@@ -56,6 +57,22 @@ resource "aws_lambda_function" "function" {
   depends_on = ["data.archive_file.zip"]
 }
 
+# SNS:WORKER:SUBSCRIPTION
+module "subscription" {
+  source = "../../../../../../modules/aws/sns"
+  endpoint_arn = "${aws_lambda_function.function.arn}"
+  protocol = "lambda"
+  topic_arn = "${var.topic_arn}"
+}
+
+# λ:SNS:PERMISSIONS:RER
+resource "aws_lambda_permission" "permissions" {
+  action = "lambda:InvokeFunction"
+  function_name = "${aws_lambda_function.function.function_name}"
+  principal = "sns.amazonaws.com"
+  source_arn = "${var.topic_arn}"
+}
+
 # OUTPUT
 
 output "arn" {
@@ -64,4 +81,8 @@ output "arn" {
 
 output "name" {
   value = "${aws_lambda_function.function.function_name}"
+}
+
+output "subscription_arn" {
+  value = "${module.subscription.topic_arn}"
 }

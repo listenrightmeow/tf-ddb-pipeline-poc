@@ -4,6 +4,7 @@ variable "namespace" {}
 variable "role_arn" {}
 variable "security_group_ids" {}
 variable "subnets" {}
+variable "table_stream" {}
 variable "topic_arn" {}
 
 variable "path" {
@@ -61,6 +62,15 @@ resource "aws_lambda_function" "function" {
   }
 
   depends_on = ["data.archive_file.zip"]
+}
+
+# DDB:STREAM:λ:RER
+resource "aws_lambda_event_source_mapping" "controller" {
+  batch_size = 100
+  event_source_arn = "${var.table_stream}"
+  enabled = true
+  function_name = "${aws_lambda_function.function.arn}"
+  starting_position = "TRIM_HORIZON"
 }
 
 # OUTPUT
