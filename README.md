@@ -20,7 +20,7 @@ In our example, we utilize `master` as our `production` equivalent branch.
 1. Create DynamoDB Table for Terraform region locking (us-east-1, pk: LockID, https://console.aws.amazon.com/dynamodb/home?region=us-east-1)
 1. Create Terraform Workspace. Aim to replicate automation (CI/CD) branches (development, test, staging, production).
 1. Configure backend/environments secrets files (`secrets/**/*.tfvars.example`) from step #1 (https://www.terraform.io/docs/backends/types/s3.html) and rename to `secrets/**/*.tfvars`.
-1. [Create DDB autoscaling IAM Role](https://console.aws.amazon.com/iam/home#/roles$new?step=permissions&selectedService=ApplicationAutoScaling&selectedUseCase=ApplicationAutoScalingDynamoSLR)(name will auto-populate).
+1. [Create DDB autoscaling IAM Role](https://console.aws.amazon.com/iam/home#/roles$new?step=permissions&selectedService=ApplicationAutoScaling&selectedUseCase=ApplicationAutoScalingDynamoSLR) (name will auto-populate).
 
 
 ## 🦄 Deployment
