@@ -4,6 +4,10 @@ const AWS = require('aws-sdk');
 
 exports.handler = (event, context) => {
   event.Records.forEach(record => {
-    console.log(new Date(parseInt(record.Sns.Message, 10)));
+    const payload = JSON.parse(record.Sns.Message);
+    const timestamp = parseInt(payload.partitionId, 10);
+    const date = new Date(timestamp);
+
+    console.log(date.toString());
   });
 };
