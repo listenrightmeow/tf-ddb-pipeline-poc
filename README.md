@@ -1,4 +1,4 @@
-This POC is inspired by my work with @j-groeneveld and this [article](https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying).
+This POC is inspired by my work with @[j-groeneveld](https://github.com/j-groeneveld) and this [article](https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying).
 
 tl;dr: Scalable data architectures are hard. Keeping them digestible and organized is harder. Getting them to scale, good luck.
 
