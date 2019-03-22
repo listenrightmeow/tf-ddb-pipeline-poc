@@ -1,3 +1,7 @@
+This POC is inspired by my work with @j-groeneveld and this [article](https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying).
+
+tl;dr: Scalable data architectures are hard. Keeping them digestible and organized is harder. Getting them to scale, good luck.
+
 This POC introduces the concept of Terraform Workspaces. The Workspace utilized in this example is "production". When designing simplicity for CI/CD, your Workspace should model the same branch name that will be utilized for the build in your application pipeline.
 
 In our example, we utilize `master` as our `production` equivalent branch.
